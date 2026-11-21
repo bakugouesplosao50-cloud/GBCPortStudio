@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -13,6 +14,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+      - name: Accept Android licenses
+        run: yes | sdkmanager --licenses || true
 
       - uses: android-actions/setup-android@v3
 
@@ -31,3 +35,4 @@ jobs:
         with:
           name: GBCPortStudio-APK
           path: project/app/build/outputs/apk/debug/app-debug.apk
+          
